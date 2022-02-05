@@ -6,19 +6,13 @@ import {createNotification} from "../store/reducers/notificationReducer";
 const AnecdotesForm = () => {
     const dispatch = useDispatch()
 
-    const getId = () => (100000 * Math.random()).toFixed(0)
-
-    const addAnecdote = (event) => {
+    const addAnecdote = async (event) => {
         event.preventDefault()
         const content = event.target.anecdote.value
         event.target.anecdote.value = ''
 
-        dispatch(createAnecdote({
-            content,
-            id: getId(),
-            votes: 0
-        }))
-        dispatch(createNotification(`You added to "${content}"`))
+        dispatch(createAnecdote(content))
+        dispatch(createNotification(`You added to "${content}"`, 10))
     }
 
     return (

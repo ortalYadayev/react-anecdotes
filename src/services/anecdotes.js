@@ -9,7 +9,7 @@ const getAll = async () => {
     return response.data;
 };
 
-const createNew = async (content) => {
+const createNewAnecdote = async (content) => {
     const object = {
         id: getId(),
         content,
@@ -24,4 +24,4 @@ const update = async (id, newObject) => {
     return response.data
 };
 
-export default { getAll, createNew, update };
+export default { getAll, createNewAnecdote, update };

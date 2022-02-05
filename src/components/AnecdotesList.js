@@ -7,9 +7,9 @@ const AnecdotesList = () => {
     const dispatch = useDispatch()
     const anecdotes = useSelector(state => state.anecdotes)
 
-    const vote = (id) => {
+    const vote = async (id) => {
         dispatch(increaseVote(id))
-        dispatch(createNotification(`You voted to "${anecdotes.find((anecdote) => anecdote.id === id).content}"`))
+        dispatch(createNotification(`You voted to "${anecdotes.find((anecdote) => anecdote.id === id).content}"`, 5))
     }
 
     return (
