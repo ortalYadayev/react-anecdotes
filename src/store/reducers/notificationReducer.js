@@ -1,20 +1,11 @@
 import notificationService from "../../services/notifications";
-import store from "../index";
 
-const notificationReducer =  (state = [], action) => {
+const notificationReducer = (state = [], action) => {
   switch(action.type) {
     case 'NEW_NOTIFICATION':
-      state = [...state, action.data.notification];
-      console.log(state)
-      setTimeout(() => {
-        store.dispatch(removeNotification(action.data.notification.id));
-      }, action.data.time*1000);
-
-      return state;
-
-    case 'REMOVE': {
+      return [...state, action.data.notification];
+    case 'REMOVE':
       return state.filter((notification) => notification.id !== action.data.id)
-    }
     case 'INIT_NOTIFICATIONS':
       return action.data;
     default:
@@ -32,6 +23,9 @@ export const createNotification = (message, time) => {
         time
       }
     })
+    setTimeout(() => {
+      dispatch(removeNotification(newNotification.id));
+    },time * 1000);
   }
 }
 
