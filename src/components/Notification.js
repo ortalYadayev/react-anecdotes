@@ -2,19 +2,24 @@ import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
 
 const Notification = () => {
-  const notification = useSelector(state => state.notification)
-  const dispatch = useDispatch()
+    const notifications = useSelector(state => state.notifications);
+    const dispatch = useDispatch()
 
-  const style = {
-    border: 'solid',
-    padding: 10,
-    borderWidth: 1
-  }
-  return (
-    <div style={style}>
-      { notification }
-    </div>
-  )
+    const style = {
+        border: 'solid',
+        padding: 10,
+        borderWidth: 1
+    }
+
+    return !!notifications.length && (
+        <div style={style}>
+            {notifications.map(notification =>
+                <div key={notification.id}>
+                    {notification.message}
+                </div>
+            )}
+        </div>
+    );
 }
 
-export default Notification
+export default Notification;
