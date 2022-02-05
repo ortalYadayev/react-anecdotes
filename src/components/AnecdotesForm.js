@@ -6,11 +6,18 @@ import {createNotification, toggleVisibleOf} from "../store/reducers/notificatio
 const AnecdotesForm = () => {
     const dispatch = useDispatch()
 
+    const getId = () => (100000 * Math.random()).toFixed(0)
+
     const addAnecdote = (event) => {
         event.preventDefault()
         const content = event.target.anecdote.value
         event.target.anecdote.value = ''
-        dispatch(createAnecdote(content))
+        console.log(content)
+        dispatch(createAnecdote({
+            content,
+            id: getId(),
+            votes: 0
+        }))
         dispatch(createNotification(`You added to "${content}"`))
     }
 
