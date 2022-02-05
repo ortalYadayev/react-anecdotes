@@ -1,9 +1,9 @@
 import React from 'react'
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 const Notification = () => {
     const notifications = useSelector(state => state.notifications);
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const style = {
         border: 'solid',
